@@ -1,0 +1,84 @@
+/* home.css */
+body {
+    font-family: "Roboto", sans-serif;
+    margin: 0;
+  }
+  
+  .hero {
+    background-repeat: no-repeat;
+    background-position: center; 
+    background-blend-mode: multiply; 
+    background-color: #007bff; 
+    color: #007bff;
+    padding: 40px 0;
+    text-align: center;
+  }
+  
+  .hero-content {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+  .hero-title {
+    font-size: 3em;
+    margin-bottom: 10px;
+  }
+  
+  .hero-tagline {
+    font-size: 1.5em;
+    margin-bottom: 20px;
+  }
+  
+  .hero-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+  }
+  
+  .button {
+    display: inline-block;
+    padding: 12px 24px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background-color 0.3s;
+  }
+  
+  .button.primary {
+    background-color: #fff;
+    color: #007bff;
+    border: 2px solid #fff;
+  }
+  
+  .button.secondary {
+    background-color: transparent;
+    color: #007bff;
+    border: 2px solid #fff;
+  }
+  
+  .button:hover {
+    background-color: #0056b3; /* Darker shade on hover */
+    color: black;
+    border-color: #0056b3;
+  }
+  
+  .features {
+    display: flex;
+    justify-content: space-around;
+    padding: 40px 0;
+  }
+  
+  .feature {
+    text-align: center;
+    width: 30%;
+  }
+  
+  .feature i {
+    font-size: 3em;
+    color: #007bff;
+    margin-bottom: 10px;
+  }
+  
+  .feature h3 {
+    color: #333;
+  }
