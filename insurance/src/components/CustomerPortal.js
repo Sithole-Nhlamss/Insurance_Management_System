@@ -1,7 +1,10 @@
 import React, { useState } from "react";
 import { applyPolicy, getPolicyStatus } from "../services/api";
 import { validateCustomerForm } from "../utils/validation";
-import "../styles/customer-portal.css"; 
+import "../styles/customer-portal.css";
+import PhoneInput from "react-phone-number-input";
+import "react-phone-number-input/style.css";
+
 
 const CustomerPortal = () => {
   // State for applying insurance
@@ -14,6 +17,8 @@ const CustomerPortal = () => {
     surgery: "",
     policyId: "",
   });
+
+  const [contact, setContact] = useState("");
 
   const [errors, setErrors] = useState({});
   const [successMessage, setSuccessMessage] = useState("");
@@ -29,6 +34,11 @@ const CustomerPortal = () => {
     setForm({ ...form, [name]: value });
   };
 
+  const handleContactChange = (value) => {
+    setContact(value);
+    setForm({ ...form, contact: value });
+  };
+
   /** Submit form to apply insurance */
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -39,7 +49,6 @@ const CustomerPortal = () => {
       setErrors(validationErrors);
       return;
     }
-  
 
     setErrors({}); // Clear validation errors if valid
 
@@ -90,86 +99,95 @@ const CustomerPortal = () => {
         <h2>Apply Insurance</h2>
         <form onSubmit={handleSubmit}>
           <div>
-            <label>Customer Name</label>
+            <label htmlFor="name">Name</label>
             <input
               type="text"
               name="name"
               value={form.name}
               onChange={handleChange}
             />
-            {errors.name && <p style={{ color: "red" }}>{errors.name}</p>}
+            {errors.name && <p className="error">{errors.name}</p>}
           </div>
 
           <div>
-            <label>Customer Date of Birth (yyyy-MM-dd)</label>
+            <label htmlFor="dob">Date of Birth (yyyy-mm-dd)</label>
             <input
               type="date"
               name="dob"
               value={form.dob}
               onChange={handleChange}
             />
-            {errors.dob && <p style={{ color: "red" }}>{errors.dob}</p>}
+            {errors.dob && <p className="error">{errors.dob}</p>}
           </div>
 
           <div>
-            <label>Customer Address</label>
+            <label htmlFor="address">Address</label>
             <input
               type="text"
               name="address"
               value={form.address}
               onChange={handleChange}
             />
-            {errors.address && <p style={{ color: "red" }}>{errors.address}</p>}
+            {errors.address && <p className="error">{errors.address}</p>}
           </div>
 
           <div>
-            <label>Customer Contact</label>
-            <input
-              type="text"
-              name="contact"
-              value={form.contact}
-              onChange={handleChange}
+            <label htmlFor="contact">Contact</label>
+            <PhoneInput
+              international
+              countryCallingCodeEditable={false}
+              defaultCountry="ZA"
+              value={contact}
+              onChange={handleContactChange}
+              error={errors.contact}
+              style={{
+                width: "100%",
+                padding: "10px",
+                margin: "10px 0",
+                border: "1px solid #ddd",
+                borderRadius: "4px",
+                boxSizing: "border-box",
+              }}
             />
-            {errors.contact && <p style={{ color: "red" }}>{errors.contact}</p>}
           </div>
 
           <div>
-            <label>Customer Disease (Yes/No)</label>
+            <label htmlFor="disease">Disease (Yes/No)</label>
             <input
               type="text"
               name="disease"
               value={form.disease}
               onChange={handleChange}
             />
-            {errors.disease && <p style={{ color: "red" }}>{errors.disease}</p>}
+            {errors.disease && <p className="error">{errors.disease}</p>}
           </div>
 
           <div>
-            <label>Customer Surgery (Yes/No)</label>
+            <label htmlFor="surgery">Surgery (Yes/No)</label>
             <input
               type="text"
               name="surgery"
               value={form.surgery}
               onChange={handleChange}
             />
-            {errors.surgery && <p style={{ color: "red" }}>{errors.surgery}</p>}
+            {errors.surgery && <p className="error">{errors.surgery}</p>}
           </div>
 
           <div>
-            <label>Policy ID</label>
+            <label htmlFor="policyId">Policy ID</label>
             <input
               type="text"
               name="policyId"
               value={form.policyId}
               onChange={handleChange}
             />
-            {errors.policyId && <p style={{ color: "red" }}>{errors.policyId}</p>}
+            {errors.policyId && <p className="error">{errors.policyId}</p>}
           </div>
 
           <button type="submit">Apply Insurance</button>
         </form>
 
-        {successMessage && <p style={{ color: "green" }}>{successMessage}</p>}
+        {successMessage && <p className="success">{successMessage}</p>}
       </div>
 
       {/* Check Policy Status */}
@@ -177,13 +195,13 @@ const CustomerPortal = () => {
         <h2>Check Policy Status</h2>
         <form onSubmit={handleCheckStatus}>
           <div>
-            <label>Enter Customer ID</label>
+            <label htmlFor="policyIdToCheck">Enter Customer ID</label>
             <input
               type="text"
               value={policyIdToCheck}
               onChange={(e) => setPolicyIdToCheck(e.target.value)}
             />
-            {statusError && <p style={{ color: "red" }}>{statusError}</p>}
+            {statusError && <p className="error">{statusError}</p>}
           </div>
           <button type="submit">Check Status</button>
         </form>

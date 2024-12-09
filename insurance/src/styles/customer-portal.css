@@ -72,3 +72,17 @@ body {
     font-size: 0.9em;
     margin-top: 5px;
   }
+  .PhoneInputInput {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #dddddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+  
+  .PhoneInputCountrySelect {
+    width: auto;
+    /* Adjust width as needed */
+  }
+  
