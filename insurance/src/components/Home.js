@@ -15,7 +15,7 @@ const Home = () => (
           <Link className="button primary" to="/customer">
             Customer Portal
           </Link>
-          <Link className="button secondary" to="/manager">
+          <Link className="button secondary" to="/manager/login">
             Manager Portal
           </Link>
         </div>

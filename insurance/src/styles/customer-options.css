@@ -1,0 +1,61 @@
+/* customer-options.css */
+.customer-options-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    text-align: center;
+    background-color: #0cd6e4; /* Light background color */
+    font-family: "Roboto", sans-serif;
+  }
+  
+  h2 {
+    color: #343a40; /* Dark gray heading color */
+    margin-bottom: 10px;
+  }
+  
+  p {
+    margin-bottom: 20px;
+  }
+  
+  .options {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap; 
+    justify-content: center; 
+ 
+  }
+  
+  .option {
+    display: inline-block;
+    padding: 12px 24px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    color: #fff; /* White text color */
+    transition: background-color 0.3s ease;
+  }
+  
+  .login {
+    background-color: #007bff; /* Blue for login */
+  }
+  
+  .login:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+  }
+  
+  .signup {
+    background-color: #28a745; /* Green for signup */
+  }
+  
+  .signup:hover {
+    background-color: #218838; /* Darker green on hover */
+  }
+  .view-policies {
+    background-color: rgb(207, 13, 175); 
+  }
+  
+  .view-policies:hover {
+    background-color: #c82333; /* Darker red on hover */
+  }

@@ -3,42 +3,25 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./components/Home";
 import CustomerPortal from "./components/CustomerPortal";
 import ManagerPortal from "./components/ManagerPortal";
+import CustomerLogin from "./components/CustomerLogin"; 
+import CustomerSignup from "./components/CustomerSignup"; 
+import ManagerLogin from "./components/ManagerLogin"; 
+import CustomerOptions from "./components/CustomerOptions";
+import CustomerPolicyList from "./components/CustomerPolicyList";
 
 const App = () => (
   <Router>
     <Routes>
       <Route path="/" element={<Home />} />
-      <Route path="/customer" element={<CustomerPortal />} />
+      <Route path="/customer" element={<CustomerOptions />} /> 
       <Route path="/manager" element={<ManagerPortal />} />
+      <Route path="/customer/login" element={<CustomerLogin />} />
+      <Route path="/customer/signup" element={<CustomerSignup />} />
+      <Route path="/customer/policies" element={<CustomerPolicyList />} />
+      <Route path="/customer/portal" element={<CustomerPortal />} />
+      <Route path="/manager/login" element={<ManagerLogin />} /> 
     </Routes>
   </Router>
 );
 
 export default App;
-
-
-// import logo from './logo.svg';
-// import './App.css';
-
-// function App() {
-//   return (
-//     <div className="App">
-//       <header className="App-header">
-//         <img src={logo} className="App-logo" alt="logo" />
-//         <p>
-//           Edit <code>src/App.js</code> and save to reload.
-//         </p>
-//         <a
-//           className="App-link"
-//           href="https://reactjs.org"
-//           target="_blank"
-//           rel="noopener noreferrer"
-//         >
-//           Learn React
-//         </a>
-//       </header>
-//     </div>
-//   );
-// }
-
-// export default App;
