@@ -9,12 +9,12 @@ const CustomerOptions = () => {
       <h2>Welcome to ABC Insurance!</h2>
       <br></br>
       <div className="options">
-        <Link className="option login" to="/customer/login">
-          Login
+        <Link className="option login" to="/customer/portal">
+          Customer Portal
         </Link>
-        <Link className="option signup" to="/customer/signup">
+        {/* <Link className="option signup" to="/customer/signup">
           Signup
-        </Link>
+        </Link> */}
         <Link className="option view-policies" to="/customer/policies"> 
           View Policies
         </Link>

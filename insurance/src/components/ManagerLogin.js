@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 const ManagerLogin = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  // eslint-disable-next-line
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
@@ -39,8 +40,8 @@ const ManagerLogin = () => {
     }
     */
 
-    alert("Login successful!"); // Simulated success message
-    navigate("/manager"); // Redirect to manager portal
+    // alert("Login successful!"); // Simulated success message
+    // navigate("/manager"); // Redirect to manager portal
   };
 
   return (

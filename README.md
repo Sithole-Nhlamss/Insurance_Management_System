@@ -28,7 +28,7 @@
 
 ## Getting Started
 
-1.  Clone the repository: `git clone <repository-url>`
+1.  Clone the repository: `git clone https://github.com/Sithole-Nhlamss/Insurance_Management_System`
 2.  Install dependencies: `npm install`
 3.  Start the development server: `npm start`
 
