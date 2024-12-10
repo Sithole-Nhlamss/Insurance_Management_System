@@ -28,14 +28,14 @@ export const validateCustomerForm = (form) => {
   // Disease validation
   if (!form.disease.trim()) {
     errors.disease = "Disease information is required.";
-  } else if (!["Yes", "No"].includes(form.disease.trim())) {
+  } else if (!["Yes", "No", "yes", "no"].includes(form.disease.trim())) {
     errors.disease = 'Disease must be "Yes" or "No".';
   }
 
   // Surgery validation
   if (!form.surgery.trim()) {
     errors.surgery = "Surgery information is required.";
-  } else if (!["Yes", "No"].includes(form.surgery.trim())) {
+  } else if (!["Yes", "No", "yes","no"].includes(form.surgery.trim())) {
     errors.surgery = 'Surgery must be "Yes" or "No".';
   }
 
