@@ -1,27 +1,17 @@
+
 import React, { useState, useEffect } from "react";
-import { addPolicy, getAllPolicies } from "../services/api";
-import "../styles/manager-portal.css"; 
+import { addPolicy, getAllPolicies, approvePolicy } from "../services/api";
 
 const ManagerPortal = () => {
-  const [policy, setPolicy] = useState({ name: "", terms: "", premium: "" });
   const [policies, setPolicies] = useState([]);
+  const [policy, setPolicy] = useState({ name: "", terms: "", premium: "" });
   const [selectedCustomerId, setSelectedCustomerId] = useState("");
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setPolicy({ ...policy, [name]: value });
-  };
+  useEffect(() => {
+    loadPolicies();
+  }, []);
 
-  const handleAddPolicy = async () => {
-    try {
-      const response = await addPolicy(policy);
-      alert(`Policy added successfully! ${JSON.stringify(response.data)}`);
-    } catch (error) {
-      alert("Error adding policy!");
-    }
-  };
-
-  const handleViewPolicies = async () => {
+  const loadPolicies = async () => {
     try {
       const response = await getAllPolicies();
       setPolicies(response.data);
@@ -30,75 +20,41 @@ const ManagerPortal = () => {
     }
   };
 
-  const handleApprovePolicy = async () => {
-    // TODO: Implement API call to approve policy for selectedCustomerId
-    alert(`Approving policy for customer ID: ${selectedCustomerId}`);
+  const handleAddPolicy = async () => {
+    try {
+      await addPolicy(policy);
+      alert("Policy added successfully!");
+      loadPolicies();
+    } catch (error) {
+      alert("Error adding policy!");
+    }
   };
 
-  // Fetch policies on component mount
-  useEffect(() => {
-    handleViewPolicies();
-  }, []);
+  const handleApprovePolicy = async () => {
+    if (!selectedCustomerId) {
+      alert("Please select a customer.");
+      return;
+    }
+    try {
+      await approvePolicy(selectedCustomerId);
+      alert("Policy approved successfully!");
+      loadPolicies();
+    } catch (error) {
+      alert("Error approving policy!");
+    }
+  };
 
   return (
     <div>
-      <h1>Manager Portal</h1>
-
-      {/* Approve Customer Insurance */}
-      <div>
-        <h2>Approve Customer Policy</h2>
-        <select onChange={(e) => setSelectedCustomerId(e.target.value)}>
-          <option value="">Select Customer</option>
-          {policies.map((p) => (
-            <option key={p.id} value={p.id}>
-              {p.name}
-            </option>
-          ))}
-        </select>
-        <button onClick={handleApprovePolicy} disabled={!selectedCustomerId}>
-          Approve Policy
-        </button>
-      </div>
-
-      {/* Add Policy Section */}
-      <div>
-        <h2>Add Policy</h2>
-        <input
-          type="text"
-          name="name"
-          placeholder="Policy Name"
-          onChange={handleChange}
-        />
-        <input
-          type="text"
-          name="terms"
-          placeholder="Terms"
-          onChange={handleChange}
-        />
-        <input
-          type="text"
-          name="premium"
-          placeholder="Premium"
-          onChange={handleChange}
-        />
-        <button onClick={handleAddPolicy}>Add Policy</button>
-      </div>
-
-      <h2>Get Policy Details of all Clients</h2>
-      {/* View Policies Section */}
-      <button onClick={handleViewPolicies}>Click</button>
-
-      <table border="1">
+      <h2>Manager Portal</h2>
+      <button onClick={loadPolicies}>Refresh Policies</button>
+      <table>
         <thead>
           <tr>
-            <th>Client Id</th>
-            <th>Client Name</th>
-            <th>Client DOB</th>
-            <th>Client Address</th>
-            <th>Client Contact</th>
-            <th>Client Disease</th>
-            <th>Client Surgery</th>
-            <th>Policy Status</th>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Premium</th>
+            <th>Actions</th>
           </tr>
         </thead>
         <tbody>
@@ -106,12 +62,12 @@ const ManagerPortal = () => {
             <tr key={p.id}>
               <td>{p.id}</td>
               <td>{p.name}</td>
-              <td>{p.dob}</td>
-              <td>{p.address}</td>
-              <td>{p.contact}</td>
-              <td>{p.disease}</td>
-              <td>{p.surgery}</td>
-              <td>{p.status}</td>
+              <td>{p.premium}</td>
+              <td>
+                <button onClick={() => setSelectedCustomerId(p.id)}>
+                  Approve
+                </button>
+              </td>
             </tr>
           ))}
         </tbody>
